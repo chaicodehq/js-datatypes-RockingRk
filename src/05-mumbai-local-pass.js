@@ -42,5 +42,44 @@
  *   // => "INVALID PASS"
  */
 export function generateLocalPass(passenger) {
-  // Your code here
+  let firstPartId;
+  let middlePartId;
+  let endPartId;
+  let passengerName;
+  let passengerClass;
+  let passengerFrom;
+  let passengerTo;
+  let generatedId;
+
+  if (
+    typeof passenger !== "object" ||
+    Array.isArray(passenger) ||
+    passenger === null
+  )
+    return "INVALID PASS";
+    if (
+  !passenger.name ||
+  !passenger.from ||
+  !passenger.to ||
+  !passenger.classType)  return "INVALID PASS";
+  if (
+    passenger.classType.toLowerCase()!== "first" &&
+    passenger.classType.toLowerCase()!== "second"
+  )
+    return "INVALID PASS";
+  if (passenger.name && passenger.from && passenger.to && passenger.classType)
+    firstPartId = passenger.classType.charAt(0).toUpperCase();
+  middlePartId = passenger.from.slice(0, 3).toUpperCase();
+  endPartId = passenger.to.slice(0, 3).toUpperCase();
+  generatedId = firstPartId + middlePartId + endPartId;
+
+  passengerClass = passenger.classType.toUpperCase();
+  passengerName = passenger.name.toUpperCase();
+  passengerFrom =
+    passenger.from.charAt(0).toUpperCase() +
+    passenger.from.slice(1).toLowerCase();
+  passengerTo =
+    passenger.to.charAt(0).toUpperCase() + passenger.to.slice(1).toLowerCase();
+
+  return `MUMBAI LOCAL PASS\n---\nName: ${passengerName}\nFrom: ${passengerFrom}\nTo: ${passengerTo}\nClass: ${passengerClass}\nPass ID: ${generatedId}`;
 }

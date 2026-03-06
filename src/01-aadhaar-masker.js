@@ -28,5 +28,8 @@
  *   // => "INVALID"
  */
 export function maskAadhaar(aadhaarNumber) {
-  // Your code here
+  if (typeof aadhaarNumber !== "string" || aadhaarNumber.length !== 12)
+    return "INVALID";
+  if (!/^\d{12}$/g.test(aadhaarNumber)) return "INVALID";
+  return "XXXX-XXXX-" + aadhaarNumber.slice(-4);
 }
